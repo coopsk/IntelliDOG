@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+apply plugin: 'application'
+mainClassName = "intelliDOG.ai.ui.IntelliDOGStarter"
+
+version '2.0'
+
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['resources']
+        }
+        resources {
+            srcDirs += sourceSets.main.java.srcDirs
+            exclude '**/*.java'
+        }
+    }
+}
+
+dependencies {
+    compile 'junit:junit:4.12'
+    compile 'org.jfree:jfreechart:1.5.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
